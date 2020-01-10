@@ -9,11 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: packer validate ubuntu1804.json
-        uses: docker://jetbrainsinfra/packer:latest
+        uses: docker://jetbrainsinfra/packer:1.3.4-vsphere-2.3-teamcity-1.0
         with:
           args: validate ubuntu1804.json
       - name: packer build ubuntu1804.json
-        uses: docker://jetbrainsinfra/packer:latest
+        uses: docker://jetbrainsinfra/packer:1.3.4-vsphere-2.3-teamcity-1.0
         with:
           args: build ubuntu1804.json
         env:
