@@ -34,7 +34,7 @@
 
       "convert_to_template": true,
 
-      "disk_controller_type":  "pvscsi",
+      "disk_controller_type":  "lsilogic-sas",
       "disk_size":        31666,
       "disk_thin_provisioned": true,
 
