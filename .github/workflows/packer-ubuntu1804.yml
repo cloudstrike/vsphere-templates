@@ -29,3 +29,4 @@ jobs:
           ESX_HOST: ${{ secrets.ESX_HOST }}
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
           PACKER_LOG: 1
+          PACKER_KEY_INTERVAL: 300ms
