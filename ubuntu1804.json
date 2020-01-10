@@ -4,7 +4,7 @@
     "vcenter_username": "{{env `VSPHERE_USER`}}",
     "vcenter_password": "{{env `VSPHERE_PASSWORD`}}",
     "vcenter_url": "{{env `VSPHERE_URL`}}",
-    "ssh_password": "{{env `SSH_PASSWORD`}}",
+    "ssh_password": "{{env `SSH_PASSWORD`}}"
   },
   "builders": [
     {
