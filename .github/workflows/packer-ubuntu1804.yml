@@ -28,3 +28,4 @@ jobs:
           VSPHERE_URL: ${{ secrets.VSPHERE_URL }}
           ESX_HOST: ${{ secrets.ESX_HOST }}
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          PACKER_LOG: 1
