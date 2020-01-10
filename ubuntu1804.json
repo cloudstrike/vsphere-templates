@@ -34,9 +34,10 @@
 
       "convert_to_template": true,
 
-      "disk_controller_type":  "lsilogic-sas",
+      "disk_controller_type":  "pvscsi",
       "disk_size":        31666,
       "disk_thin_provisioned": true,
+      "cdrom_type": "sata",
 
       "network_card": "vmxnet3",
 
