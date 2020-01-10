@@ -16,6 +16,7 @@
       "insecure_connection": "false",
 
       "vm_name": "ubuntu1804-template-{{timestamp}}",
+      "folder": "CloudStrike",
       "notes": "Built by Packer (https://github.com/cloudstrike/vsphere-templates)",
       "datacenter": "LAB",
       "cluster": "LAB",
@@ -31,7 +32,7 @@
       "CPUs":             1,
       "RAM":              1024,
 
-      "convert_to_template": false,
+      "convert_to_template": true,
 
       "disk_controller_type":  "pvscsi",
       "disk_size":        31666,
@@ -46,7 +47,7 @@
       "iso_checksum_type": "sha256",
 
       "floppy_files": [
-        "{{template_dir}}/preseed.cfg"
+        "{{template_dir}}/ubuntu1804-preseed.cfg"
       ],
       "boot_command": [
         "<enter><wait><f6><wait><esc><wait>",
@@ -63,7 +64,7 @@
         " initrd=/install/initrd.gz",
         " priority=critical",
         " locale=en_US",
-        " file=/media/preseed.cfg",
+        " file=/media/ubuntu1804-preseed.cfg",
         "<enter>"
       ]
     }
