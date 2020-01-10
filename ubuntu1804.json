@@ -1,44 +1,56 @@
 {
+  "variables": {
+    "esx_host": "{{env `ESX_HOST`}}",
+    "vcenter_username": "{{env `VSPHERE_USER`}}",
+    "vcenter_password": "{{env `VSPHERE_PASSWORD`}}",
+    "vcenter_url": "{{env `VSPHERE_URL`}}",
+    "ssh_password": "{{env `SSH_PASSWORD`}}",
+  },
+{
   "builders": [
     {
       "type": "vsphere-iso",
 
-      "vcenter_server":      "myvcenter",
+      "vcenter_server":      "{{user `vcenter_url`}}",
       "username":            "{{user `vcenter_username`}}",
       "password":            "{{user `vcenter_password`}}",
-      "insecure_connection": "true",
+      "insecure_connection": "false",
 
-      "vm_name": "example-ubuntu",
-      "notes": "Some random notes",
-      "datacenter": "mydatacenter",
-      "cluster": "mycluster",
-      "host": "myesxihost",
-      "datastore": "mydatastore",
-      "network": "myfolder/myportgroupname",
-      "resource_pool": "myresourcepool",
+      "vm_name": "ubuntu1804-template-{{timestamp}}",
+      "notes": "Built by Packer (https://github.com/cloudstrike/vsphere-templates)",
+      "datacenter": "LAB",
+      "cluster": "LAB",
+      "host": "{{user `esx_host`}}",
+      "datastore": "vDatastore2",
+      "network": "SERVERS",
+      "resource_pool": "Resources",
 
       "guest_os_type": "ubuntu64Guest",
 
-      "ssh_username": "jetbrains",
-      "ssh_password": "jetbrains",
+      "ssh_username": "localtomas",
+      "ssh_password": "{{user `ssh_password`}}",
 
       "CPUs":             1,
       "RAM":              1024,
-      "RAM_reserve_all": true,
 
       "convert_to_template": false,
 
       "disk_controller_type":  "pvscsi",
-      "disk_size":        32768,
+      "disk_size":        31666,
       "disk_thin_provisioned": true,
 
       "network_card": "vmxnet3",
 
-      "iso_paths": [
-        "[mydatastore] ISOfolder/ubuntu-16.04.1-server-amd64.iso"
-      ],
-      "iso_checksum": "af5f788aee1b32c4b2634734309cc9e9",
-      "iso_checksum_type": "md5",
+      "iso_urls": "http://ucmirror.canterbury.ac.nz/linux/ubuntu-releases/bionic/ubuntu-18.04.3-live-server-amd64.iso",
+      "iso_checksum": "b9beac143e36226aa8a0b03fc1cbb5921cff80123866e718aaeba4edb81cfa63",
+      "iso_checksum_type": "sha256",
+      
+      #"iso_paths": [
+      #  "[mydatastore] ISOfolder/ubuntu-16.04.1-server-amd64.iso"
+      #],
+      #"iso_checksum": "af5f788aee1b32c4b2634734309cc9e9",
+      #"iso_checksum_type": "md5",
+      
       "floppy_files": [
         "{{template_dir}}/preseed.cfg"
       ],
