@@ -1,0 +1,22 @@
+name: Packer
+on:
+  push:
+      paths:
+        - '*.json'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: packer validate ubuntu1804.json
+        uses: docker://hashicorp/packer:latest
+        with:
+          args: validate ubuntu1804.json
+      - name: packer build ubuntu1804.json
+        uses: docker://hashicorp/packer:latest
+        with:
+          args: build ubuntu1804.json
+        env:
+          VSPHERE_USER: ${{ secrets.VSPHERE_USER }}
+          VSPHERE_PASSWORD: ${{ secrets.VSPHERE_PASSWORD }}
+          VSPHERE_URL: ${{ secrets.VSPHERE_URL }}
