@@ -22,7 +22,6 @@
       "host": "{{user `esx_host`}}",
       "datastore": "vDatastore2",
       "network": "SERVERS",
-      "resource_pool": "Resources",
 
       "guest_os_type": "ubuntu64Guest",
 
@@ -40,7 +39,9 @@
 
       "network_card": "vmxnet3",
 
-      "iso_urls": "http://ucmirror.canterbury.ac.nz/linux/ubuntu-releases/bionic/ubuntu-18.04.3-live-server-amd64.iso",
+      "iso_paths": [
+        "[vDatastore2] ISO/ubuntu-18.04.3-live-server-amd64.iso"
+      ],
       "iso_checksum": "b9beac143e36226aa8a0b03fc1cbb5921cff80123866e718aaeba4edb81cfa63",
       "iso_checksum_type": "sha256",
 
