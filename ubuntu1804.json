@@ -6,7 +6,6 @@
     "vcenter_url": "{{env `VSPHERE_URL`}}",
     "ssh_password": "{{env `SSH_PASSWORD`}}",
   },
-{
   "builders": [
     {
       "type": "vsphere-iso",
