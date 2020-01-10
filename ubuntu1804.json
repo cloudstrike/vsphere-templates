@@ -71,7 +71,7 @@
   "provisioners": [
     {
       "type": "shell",
-      "inline": ["ls /"]
+      "inline": ["echo 'We're done here.'"]
     }
   ]
 }
