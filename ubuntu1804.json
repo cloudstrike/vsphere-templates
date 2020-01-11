@@ -28,13 +28,8 @@
 
       "ssh_username": "localtomas",
       "ssh_password": "{{user `ssh_password`}}",
-      "ssh_wait_timeout": "10000s",
 
       "CPUs":             1,
-      "vmx_data": {
-        "cpuid.coresPerSocket": "1",
-        "ethernet0.pciSlotNumber": "32"
-      },
       "RAM":              1024,
 
       "convert_to_template": true,
