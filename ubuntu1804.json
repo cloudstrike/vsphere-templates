@@ -4,7 +4,8 @@
     "vcenter_username": "{{env `VSPHERE_USER`}}",
     "vcenter_password": "{{env `VSPHERE_PASSWORD`}}",
     "vcenter_url": "{{env `VSPHERE_URL`}}",
-    "ssh_password": "{{env `SSH_PASSWORD`}}"
+    "ssh_password": "{{env `SSH_PASSWORD`}}",
+    "boot_command_prefix": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>"
   },
   "builders": [
     {
@@ -47,24 +48,22 @@
       "iso_checksum": "b9beac143e36226aa8a0b03fc1cbb5921cff80123866e718aaeba4edb81cfa63",
       "iso_checksum_type": "sha256",
 
-      "boot_wait": "1m",
       "boot_command": [
-        "<enter><wait><f6><wait><esc><wait>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "<bs><bs><bs>",
-        "/install/vmlinuz",
-        " initrd=/install/initrd.gz",
-        " priority=critical",
-        " locale=en_US",
-        " preseed/url=https://raw.githubusercontent.com/cloudstrike/vsphere-templates/master/ubuntu1804-preseed.cfg",
-        "<enter>"
+          "{{user `boot_command_prefix`}}",
+          "/install/vmlinuz noapic ",
+          "initrd=/install/initrd.gz ",
+          "preseed/url=https://raw.githubusercontent.com/cloudstrike/vsphere-templates/master/ubuntu1804-preseed.cfg ",
+          "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+          "hostname=ubuntu1804-template-{{isotime \"200601021504\"}} ",
+          "grub-installer/bootdev=/dev/sda<wait> ",
+          "fb=false debconf/frontend=noninteractive ",
+          "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+          "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+          "passwd/user-fullname=tomas ",
+          "passwd/user-password={{user `ssh_password`}} ",
+          "passwd/user-password-again={{user `ssh_password`}} ",
+          "passwd/username=localtomas ",
+          "-- <enter>"
       ]
     }
   ],
