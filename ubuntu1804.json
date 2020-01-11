@@ -69,7 +69,7 @@
           " grub-installer/bootdev=/dev/sda",
           " preseed/url=https://raw.githubusercontent.com/cloudstrike/vsphere-templates/master/ubuntu1804-preseed.cfg ",
           " -- <wait>",
-          "<enter><wait>"
+          "<enter><wait60>"
       ]
     }
   ],
