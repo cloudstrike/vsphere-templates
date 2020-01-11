@@ -63,7 +63,6 @@
         " priority=critical",
         " locale=en_US",
         " preseed/url=https://raw.githubusercontent.com/cloudstrike/vsphere-templates/master/ubuntu1804-preseed.cfg",
-        " -- <wait>",
         "<enter>"
       ]
     }
@@ -72,7 +71,7 @@
   "provisioners": [
     {
       "type": "shell",
-      "inline": ["echo 'We're done here!'"]
+      "inline": ["echo 'We're done here'"]
     }
   ]
 }
