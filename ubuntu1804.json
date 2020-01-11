@@ -15,7 +15,7 @@
       "password":            "{{user `vcenter_password`}}",
       "insecure_connection": "false",
 
-      "vm_name": "ubuntu1804-template-{{timestamp}}",
+      "vm_name": "ubuntu1804-template-{{isotime "200601021504"}}",
       "folder": "CloudStrike",
       "notes": "Built by Packer (https://github.com/cloudstrike/vsphere-templates)",
       "datacenter": "LAB",
@@ -47,7 +47,7 @@
       "iso_checksum": "b9beac143e36226aa8a0b03fc1cbb5921cff80123866e718aaeba4edb81cfa63",
       "iso_checksum_type": "sha256",
 
-      "boot_wait": "30s",
+      "boot_wait": "1m",
       "boot_command": [
         "<enter><wait><f6><wait><esc><wait>",
         "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
