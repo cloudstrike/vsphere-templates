@@ -67,7 +67,6 @@
           " netcfg/get_domain=cloudstrike.nz",
           " netcfg/get_hostname=ubuntu1804",
           " grub-installer/bootdev=/dev/sda",
-          " noapic",
           " preseed/url=https://raw.githubusercontent.com/cloudstrike/vsphere-templates/master/ubuntu1804-preseed.cfg ",
           " -- <wait>",
           "<enter><wait>"
