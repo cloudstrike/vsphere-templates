@@ -69,8 +69,8 @@
           " grub-installer/bootdev=/dev/sda<wait>",
           " noapic<wait>",
           " preseed/url=https://raw.githubusercontent.com/cloudstrike/vsphere-templates/master/ubuntu1804-preseed.cfg ",
-          " -- <wait5>",
-          "<enter><wait10>"
+          " -- <wait15>",
+          "<enter><wait20>"
       ]
     }
   ],
