@@ -29,8 +29,8 @@
       "ssh_username": "localtomas",
       "ssh_password": "{{user `ssh_password`}}",
 
-      "CPUs":             1,
-      "RAM":              1024,
+      "CPUs":             2,
+      "RAM":              2048,
 
       "convert_to_template": true,
 
