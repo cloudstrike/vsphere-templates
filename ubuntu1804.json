@@ -15,7 +15,7 @@
       "password":            "{{user `vcenter_password`}}",
       "insecure_connection": "false",
 
-      "vm_name": "ubuntu1804-template-{{isotime "200601021504"}}",
+      "vm_name": "ubuntu1804-template-{{isotime \"200601021504\"}}",
       "folder": "CloudStrike",
       "notes": "Built by Packer (https://github.com/cloudstrike/vsphere-templates)",
       "datacenter": "LAB",
