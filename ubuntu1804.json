@@ -4,8 +4,7 @@
     "vcenter_username": "{{env `VSPHERE_USER`}}",
     "vcenter_password": "{{env `VSPHERE_PASSWORD`}}",
     "vcenter_url": "{{env `VSPHERE_URL`}}",
-    "ssh_password": "{{env `SSH_PASSWORD`}}",
-    "boot_command_prefix": "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>"
+    "ssh_password": "{{env `SSH_PASSWORD`}}"
   },
   "builders": [
     {
@@ -29,8 +28,13 @@
 
       "ssh_username": "localtomas",
       "ssh_password": "{{user `ssh_password`}}",
+      "ssh_wait_timeout": "10000s",
 
       "CPUs":             1,
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1",
+        "ethernet0.pciSlotNumber": "32"
+      },
       "RAM":              1024,
 
       "convert_to_template": true,
@@ -49,21 +53,29 @@
       "iso_checksum_type": "sha256",
 
       "boot_command": [
-          "{{user `boot_command_prefix`}}",
-          "/install/vmlinuz noapic ",
-          "initrd=/install/initrd.gz ",
-          "preseed/url=https://raw.githubusercontent.com/cloudstrike/vsphere-templates/master/ubuntu1804-preseed.cfg ",
-          "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-          "hostname=ubuntu1804-template-{{isotime \"200601021504\"}} ",
-          "grub-installer/bootdev=/dev/sda<wait> ",
-          "fb=false debconf/frontend=noninteractive ",
-          "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
-          "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
-          "passwd/user-fullname=tomas ",
-          "passwd/user-password={{user `ssh_password`}} ",
-          "passwd/user-password-again={{user `ssh_password`}} ",
-          "passwd/username=localtomas ",
-          "-- <enter>"
+          "<esc><wait>",
+          "<esc><wait>",
+          "<enter><wait>",
+          "/install/vmlinuz<wait>",
+          " auto<wait>",
+          " console-setup/ask_detect=false<wait>",
+          " console-setup/layoutcode=us<wait>",
+          " console-setup/modelcode=pc105<wait>",
+          " debconf/frontend=noninteractive<wait>",
+          " debian-installer=en_US.UTF-8<wait>",
+          " fb=false<wait>",
+          " initrd=/install/initrd.gz<wait>",
+          " kbd-chooser/method=us<wait>",
+          " keyboard-configuration/layout=USA<wait>",
+          " keyboard-configuration/variant=USA<wait>",
+          " locale=en_US.UTF-8<wait>",
+          " netcfg/get_domain=vm<wait>",
+          " netcfg/get_hostname=vagrant<wait>",
+          " grub-installer/bootdev=/dev/sda<wait>",
+          " noapic<wait>",
+          " preseed/url=https://raw.githubusercontent.com/cloudstrike/vsphere-templates/master/ubuntu1804-preseed.cfg ",
+          " -- <wait>",
+          "<enter><wait>"
       ]
     }
   ],
