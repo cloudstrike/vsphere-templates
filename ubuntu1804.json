@@ -3,8 +3,7 @@
     "esx_host": "{{env `ESX_HOST`}}",
     "vcenter_username": "{{env `VSPHERE_USER`}}",
     "vcenter_password": "{{env `VSPHERE_PASSWORD`}}",
-    "vcenter_url": "{{env `VSPHERE_URL`}}",
-    "ssh_password": "{{env `SSH_PASSWORD`}}"
+    "vcenter_url": "{{env `VSPHERE_URL`}}"
   },
   "builders": [
     {
@@ -26,8 +25,8 @@
 
       "guest_os_type": "ubuntu64Guest",
 
-      "ssh_username": "localtomas",
-      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
 
       "CPUs":             2,
       "RAM":              2048,
@@ -64,12 +63,11 @@
           " keyboard-configuration/layout=USA",
           " keyboard-configuration/variant=USA",
           " locale=en_US.UTF-8",
-          " netcfg/get_domain=cloudstrike.nz",
-          " netcfg/get_hostname=ubuntu1804",
+          " hostname=ubuntu1804",
           " grub-installer/bootdev=/dev/sda",
           " preseed/url=https://raw.githubusercontent.com/cloudstrike/vsphere-templates/master/ubuntu1804-preseed.cfg ",
           " -- <wait>",
-          "<enter><wait60>"
+          "<enter><wait>"
       ]
     }
   ],
@@ -77,7 +75,7 @@
   "provisioners": [
     {
       "type": "shell",
-      "inline": ["echo 'We're done here!'"]
+      "inline": ["ls /"]
     }
   ]
 }
